@@ -97,6 +97,11 @@ export class ResourceComponent {
    * 删除选中的对象
    */
   public deleteResource() {
+    if (!this.activeResource._id) {
+      alert("没有数据可以删除");
+      return;
+    }
+
     const isConfirm = confirm("确认删除？")
     if (isConfirm) {
       // 删除请求

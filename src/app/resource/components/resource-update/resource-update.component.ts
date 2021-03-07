@@ -17,7 +17,7 @@ export class ResourceUpdateComponent implements OnInit {
 
   @Input() set setResource(selectedResource: Resource) {
     // 如果已经选中，并且新选中的和之前已经选中的不是同一个
-    if (this.selectedResource && (this.selectedResource._id !== selectedResource._id)) {
+    if (this.selectedResource && (this.selectedResource._id !== selectedResource?._id)) {
       if (this.timeoutId) { // 如果定时器还存在
         // 刷新定时器，重置更新警告
         clearTimeout(this.timeoutId);
