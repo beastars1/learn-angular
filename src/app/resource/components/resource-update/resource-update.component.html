@@ -1,0 +1,26 @@
+<form>
+  <div *ngIf="alert?.success" class="alert alert-success">{{alert.success}}</div>
+  <div *ngIf="alert?.error" class="alert alert-danger">{{alert.error}}</div>
+  <div class="mb-3">
+    <label htmlFor="firstName">标题</label>
+    <input [(ngModel)]="selectedResource.title" name="title" type="text" class="form-control" id="title"
+      placeholder="标题...">
+  </div>
+  <div class="mb-3">
+    <label htmlFor="description">描述</label>
+    <textarea [(ngModel)]="selectedResource.description" name="description" class="form-control" id="description"
+      placeholder="描述..."></textarea>
+  </div>
+  <div class="mb-3">
+    <label htmlFor="link">链接</label>
+    <input [(ngModel)]="selectedResource.link" name="link" class="form-control" id="link" placeholder="链接...">
+  </div>
+  <div class="mb-3">
+    <label htmlFor="type">类型</label>
+    <select [(ngModel)]="selectedResource.type" name="type" id="type" class="form-control">
+      <option *ngFor="let type of types" [value]="type">{{type}}</option>
+    </select>
+  </div>
+  <hr class="mb-4" />
+  <button (click)="submitForm()" class="btn btn-primary btn-lg btn-block" type="button">更新</button>
+</form>

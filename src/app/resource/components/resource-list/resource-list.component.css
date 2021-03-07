@@ -1,0 +1,12 @@
+.resource-list {
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.is-active {
+  background-color: #e4e4e4;
+}
+
+.resource-list-item {
+  cursor: pointer;
+}

@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-4 order-md-2 mb-4">
+    <h4 class="d-flex justify-content-between algin-items-center mb-3">
+      <span class="text-muted">数据</span>
+      <span class="badge badge-secondary badge-pill">{{totalResources}}</span>
+    </h4>
+    <!-- 搜索框 -->
+    <app-resource-search></app-resource-search>
+    <!-- 数据列表 -->
+    <app-resource-list [activeId]="activeResource?._id" (onResourceClick)="handleResourceSelect($event)"
+      [resources]="resources"></app-resource-list>
+
+    <!-- <button (click)='addResource()' class="btn btn-primary">添加数据</button> -->
+  </div>
+
+  <div class="col-md-8 order-md-1">
+    <h4 class="mb-3">数据
+      <button (click)='toogleDetailView()' [ngClass]="btnViewClass" class="btn btn-sm">{{isDetailView ? '编辑' :
+        '详情'}}</button>
+    </h4>
+
+    <!-- 数据详情 -->
+    <app-resource-detail [resource]="activeResource" *ngIf='isDetailView; else updateView'></app-resource-detail>
+    <!-- 更新数据 -->
+    <!-- <app-resource-update *ngIf='!isDetailView'></app-resource-update> -->
+    <ng-template #updateView>
+      <app-resource-update (onResourceUpdate)="hydrateResource($event)" [setResource]="activeResource">
+      </app-resource-update>
+    </ng-template>
+  </div>
+
+</div>
