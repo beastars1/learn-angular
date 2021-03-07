@@ -17,6 +17,8 @@
     <h4 class="mb-3">数据
       <button (click)='toogleDetailView()' [ngClass]="btnViewClass" class="btn btn-sm">{{isDetailView ? '编辑' :
         '详情'}}</button>
+
+        <button (click)="deleteResource()" class="btn btn-sm btn-danger ml-2">删除</button>
     </h4>
 
     <!-- 数据详情 -->

@@ -23,9 +23,13 @@ export class ResourceService {
    * @param body 更新后的对象
    * @returns 返回更新是成功还是失败
    */
-  updateResource(id: string, body: Resource) {
+  updateResource(id: string, body: Resource): Observable<Resource> {
     return this.http.patch<Resource>(`/api/resources/${id}`, body)
       .pipe(catchError(this.handleError));
+  }
+
+  deleteResource(id: string): Observable<Resource> {
+    return this.http.delete<Resource>(`/api/resources/${id}`);
   }
 
   private handleError(errorResponse: HttpErrorResponse): Observable<never> {
