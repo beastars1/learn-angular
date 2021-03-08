@@ -7,6 +7,7 @@ import { ResourceListComponent } from "./components/resource-list/resource-list.
 import { ResourceSearchComponent } from "./components/resource-search/resource-search.component";
 import { ResourceUpdateComponent } from "./components/resource-update/resource-update.component";
 import { ResourceComponent } from "./resource.component";
+import { ResourceNewComponent } from './resource-new/resource-new.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { ResourceComponent } from "./resource.component";
     ResourceListComponent,
     ResourceUpdateComponent,
     ResourceDetailComponent,
+    ResourceNewComponent,
   ],
   exports: [
     // 导出组件，让外部可以使用

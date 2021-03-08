@@ -4,6 +4,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { ResourceModule } from './resource/resource.module';
+import { Routes, RouterModule } from "@angular/router";
+import { ResourceComponent } from './resource/resource.component';
+import { ResourceNewComponent } from './resource/resource-new/resource-new.component';
+
+const routes: Routes = [
+  { path: "", component: ResourceComponent },
+  { path: "new", component: ResourceNewComponent }
+];
 
 @NgModule({
   declarations: [
@@ -14,7 +22,8 @@ import { ResourceModule } from './resource/resource.module';
   imports: [
     // 声明该模块所依赖的模块
     BrowserModule,
-    ResourceModule
+    ResourceModule,
+    RouterModule.forRoot(routes)
   ],
   bootstrap: [
     // 声明主组件是什么
