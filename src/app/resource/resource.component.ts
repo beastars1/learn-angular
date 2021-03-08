@@ -1,25 +1,32 @@
-import { Component, OnInit } from "@angular/core";
-import { Resource } from "./shared/resource.model";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Resource, ResourceAlert } from "./shared/resource.model";
 import { ResourceService } from "./shared/resource.service";
 
 @Component({
   selector: 'app-resource',
   templateUrl: './resource.component.html'
 })
-export class ResourceComponent {
+export class ResourceComponent implements OnDestroy, OnInit {
   public isDetailView = true;
   public selectedResource!: Resource;
 
-  public resources: Resource[] = []
+  public resources: Resource[] = [];
+  
+  alert!: ResourceAlert;
+  private timeoutId: any | undefined;
 
-  constructor(private resourceService: ResourceService) {
-
-  }
+  constructor(private resourceService: ResourceService) { }
 
   // 初始化函数
   ngOnInit() {
     // 发起请求
     this.getResources();
+  }
+
+  // 销毁（离开页面）时的钩子函数，执行这个函数之后才会离开页面
+  ngOnDestroy(): void {
+    // 如果定时器还存在，就销毁
+    this.timeoutId && clearTimeout(this.timeoutId);
   }
 
   private getResources() {
@@ -115,14 +122,27 @@ export class ResourceComponent {
     }
   }
 
+  /**
+   * @param type 更新是否成功
+   * @param message 显示信息
+   */
+  private setAlert(type: keyof ResourceAlert, message: string) {
+    this.alert = new ResourceAlert();
+    this.alert[type] = message;
+    // 显示更新是否成功之后，三秒之后提示清空
+    this.timeoutId = setTimeout(() => {
+      this.alert = new ResourceAlert();
+    }, 3000);
+  }
+
   public updateResource = (resource: Resource) => {
     this.resourceService.updateResource(resource?._id, resource)
       .subscribe((updateResource) => { // 成功的话
         this.hydrateResource(updateResource);
         // 弹窗
-        // this.setAlert("success", "更新成功");
+        this.setAlert("success", "更新成功");
       }, (error: string) => { // 失败的话
-        // this.setAlert("error", error);
+        this.setAlert("error", error);
       });
   }
 }
