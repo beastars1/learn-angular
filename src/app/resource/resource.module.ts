@@ -8,6 +8,18 @@ import { ResourceSearchComponent } from "./components/resource-search/resource-s
 import { ResourceUpdateComponent } from "./components/resource-update/resource-update.component";
 import { ResourceComponent } from "./resource.component";
 import { ResourceNewComponent } from './resource-new/resource-new.component';
+import { ResourceOutletComponent } from './resource-outlet.component';
+import { Routes, RouterModule } from "@angular/router";
+
+const routes: Routes = [
+  {
+    path: "resources", component: ResourceOutletComponent,
+    children: [
+      { path: "", component: ResourceComponent },
+      { path: "new", component: ResourceNewComponent }
+    ]
+  }
+];
 
 @NgModule({
   declarations: [
@@ -17,6 +29,7 @@ import { ResourceNewComponent } from './resource-new/resource-new.component';
     ResourceUpdateComponent,
     ResourceDetailComponent,
     ResourceNewComponent,
+    ResourceOutletComponent,
   ],
   exports: [
     // 导出组件，让外部可以使用
@@ -25,7 +38,8 @@ import { ResourceNewComponent } from './resource-new/resource-new.component';
   imports: [
     CommonModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forChild(routes)
   ]
 })
 export class ResourceModule {
