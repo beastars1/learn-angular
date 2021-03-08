@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Resource, ResourceAlert } from '../../shared/resource.model';
 import { ResourceService } from '../../shared/resource.service';
 
@@ -8,7 +9,7 @@ import { ResourceService } from '../../shared/resource.service';
   styleUrls: ['./resource-update.component.css']
 })
 export class ResourceUpdateComponent implements OnInit {
-  @Output() onResourceUpdate = new EventEmitter<Resource>();
+  @Input() onSubmit!: ((resource: Resource) => Observable<Resource>);
 
   selectedResource!: Resource;
   types = Resource.types;
@@ -45,15 +46,7 @@ export class ResourceUpdateComponent implements OnInit {
 
   submitForm() {
     // alert(JSON.stringify(this.sel ectedResource))
-    this.resourceService.updateResource(this.selectedResource?._id, this.selectedResource)
-      .subscribe((updateResource) => { // 成功的话
-        // console.log(updateResource)
-        this.onResourceUpdate.emit(updateResource);
-        // 弹窗
-        this.setAlert("success", "更新成功");
-      }, (error: string) => { // 失败的话
-        this.setAlert("error", error);
-      });
+    this.onSubmit(this.selectedResource);
   }
 
   /**

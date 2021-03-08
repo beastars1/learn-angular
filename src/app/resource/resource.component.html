@@ -29,7 +29,7 @@
     <!-- 更新数据 -->
     <!-- <app-resource-update *ngIf='!isDetailView'></app-resource-update> -->
     <ng-template #updateView>
-      <app-resource-update (onResourceUpdate)="hydrateResource($event)" [setResource]="activeResource">
+      <app-resource-update [onSubmit]="updateResource" [setResource]="activeResource">
       </app-resource-update>
     </ng-template>
   </div>

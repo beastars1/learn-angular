@@ -114,4 +114,15 @@ export class ResourceComponent {
         })
     }
   }
+
+  public updateResource = (resource: Resource) => {
+    this.resourceService.updateResource(resource?._id, resource)
+      .subscribe((updateResource) => { // 成功的话
+        this.hydrateResource(updateResource);
+        // 弹窗
+        // this.setAlert("success", "更新成功");
+      }, (error: string) => { // 失败的话
+        // this.setAlert("error", error);
+      });
+  }
 }
