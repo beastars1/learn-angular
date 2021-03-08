@@ -1,4 +1,4 @@
-<div *ngIf="!selectedResource?._id; else formView" class="card">
+<div *ngIf="!selectedResource; else formView" class="card">
   <div class="card-body">
     No Resource!
   </div>
@@ -29,6 +29,6 @@
       </select>
     </div>
     <hr class="mb-4" />
-    <button (click)="submitForm()" class="btn btn-primary btn-lg btn-block" type="button">更新</button>
+    <button (click)="submitForm()" class="btn btn-primary btn-lg btn-block" type="button">提交</button>
   </form>
 </ng-template>

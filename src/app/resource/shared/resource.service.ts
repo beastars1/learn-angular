@@ -18,6 +18,16 @@ export class ResourceService {
   }
 
   /**
+   * 添加对象
+   * @param body 要添加的对象
+   * @returns 返回添加是成功还是失败
+   */
+  createResource(body: Resource): Observable<Resource> {
+    return this.http.post<Resource>(`/api/resources`, body)
+      .pipe(catchError(this.handleError));
+  }
+
+  /**
    * 更新指定编号的对象
    * @param id 要更新的对象的编号
    * @param body 更新后的对象

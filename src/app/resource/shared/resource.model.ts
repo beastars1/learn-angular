@@ -6,14 +6,14 @@ export class ResourceAlert {
 export class Resource {
   static readonly types = ["book", "blog", "video"];
 
+  // @ts-ignore
   _id: string;
   title: string;
   description: string;
   link: string;
   type: string;
 
-  constructor({ _id = '', title = '', description = '', link = '', type = '' } = {}) {
-    this._id = _id;
+  constructor({ title = '', description = '', link = '', type = '' } = {}) {
     this.title = title;
     this.description = description;
     this.link = link;

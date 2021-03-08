@@ -29,8 +29,8 @@
     <!-- 更新数据 -->
     <!-- <app-resource-update *ngIf='!isDetailView'></app-resource-update> -->
     <ng-template #updateView>
-      <app-resource-update [alert]="alert" [onSubmit]="updateResource" [setResource]="activeResource">
-      </app-resource-update>
+      <app-resource-form [alert]="alert" [onSubmit]="updateResource" [setResource]="activeResource">
+      </app-resource-form>
     </ng-template>
   </div>
 

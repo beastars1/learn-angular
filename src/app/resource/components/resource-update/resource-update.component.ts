@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Resource, ResourceAlert } from '../../shared/resource.model';
 
 @Component({
-  selector: 'app-resource-update',
+  selector: 'app-resource-form',
   templateUrl: './resource-update.component.html',
   styleUrls: ['./resource-update.component.css']
 })
