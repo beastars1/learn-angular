@@ -17,6 +17,10 @@ export class ResourceService {
     return this.http.get<Resource[]>("/api/resources");
   }
 
+  getResourcesById(id: string): Observable<Resource> {
+    return this.http.get<Resource>(`/api/resources/${id}`);
+  }
+
   /**
    * 添加对象
    * @param body 要添加的对象

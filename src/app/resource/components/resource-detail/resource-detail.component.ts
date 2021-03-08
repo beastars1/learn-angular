@@ -8,4 +8,5 @@ import { Resource } from 'src/app/resource/shared/resource.model';
 })
 export class ResourceDetailComponent {
   @Input() resource: Resource | undefined;
+  @Input() isButtonDisplayed = true;
 }
