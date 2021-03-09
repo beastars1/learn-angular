@@ -5,7 +5,7 @@
       <span class="badge badge-secondary badge-pill">{{totalResources}}</span>
     </h4>
     <!-- 搜索框 -->
-    <app-resource-search></app-resource-search>
+    <app-resource-search (onSearch)="handleSearch($event)"></app-resource-search>
     <!-- 数据列表 -->
     <app-resource-list [activeId]="activeResource?._id" (onResourceClick)="handleResourceSelect($event)"
       [resources]="resources"></app-resource-list>

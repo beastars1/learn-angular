@@ -133,4 +133,8 @@ export class ResourceComponent extends AlertComponent implements OnDestroy, OnIn
         this.setAlert("error", error);
       });
   }
+
+  public handleSearch(searchTitle: string) {
+    console.log(searchTitle)
+  }
 }

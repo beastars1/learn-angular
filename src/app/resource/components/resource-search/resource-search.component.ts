@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-resource-search',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./resource-search.component.css']
 })
 export class ResourceSearchComponent implements OnInit {
+
+  @Output() onSearch = new EventEmitter<string>();
 
   constructor() { }
 
