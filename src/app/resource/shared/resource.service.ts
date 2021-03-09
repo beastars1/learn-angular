@@ -22,6 +22,14 @@ export class ResourceService {
   }
 
   /**
+   * 搜索
+   * @param searchItem 搜索的根据
+   */
+  public searchResources(searchItem: string): Observable<Resource[]> {
+    return this.http.get<Resource[]>(`/api/resources/s/${searchItem}`);
+  }
+
+  /**
    * 添加对象
    * @param body 要添加的对象
    * @returns 返回添加是成功还是失败

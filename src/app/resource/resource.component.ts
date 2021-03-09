@@ -80,7 +80,7 @@ export class ResourceComponent extends AlertComponent implements OnDestroy, OnIn
     this.selectResource(resource);
   }
 
-  private selectResource(resource: Resource) {
+  private selectResource(resource: Resource | null) {
     if (!resource || !resource._id) {
       return null;
     }
@@ -135,6 +135,18 @@ export class ResourceComponent extends AlertComponent implements OnDestroy, OnIn
   }
 
   public handleSearch(searchTitle: string) {
-    console.log(searchTitle)
+    // console.log(searchTitle)
+    if (!searchTitle) {
+      return this.getResources();
+    }
+
+    this.resourceService.searchResources(searchTitle)
+      .subscribe(searchedResources => {
+        // console.log(searchedResources)
+        this.resources = searchedResources;
+        this.selectResource(null);
+        // 如果搜索不到对象，详情界面应该不显示
+        this.isDetailView ? null : this.isDetailView = true;
+      });
   }
 }
